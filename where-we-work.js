@@ -8,11 +8,11 @@
   }
 
   const CITIES = [
-    { name: "Spartanburg, SC", pos: [34.9496, -81.9321] },
-    { name: "Tryon, NC", pos: [35.2089, -82.2344] },
-    { name: "Inman, SC", pos: [35.0479, -82.0919] },
-    { name: "Landrum, SC", pos: [35.1751, -82.1893] },
-    { name: "Columbus, NC", pos: [35.2532, -82.1971] }
+    { name: "Spartanburg, SC", pos: [34.9496, -81.9321], labelSide: "right" },
+    { name: "Tryon, NC", pos: [35.2089, -82.2344], labelSide: "left" },
+    { name: "Inman, SC", pos: [35.0479, -82.0919], labelSide: "right" },
+    { name: "Landrum, SC", pos: [35.1751, -82.1893], labelSide: "left" },
+    { name: "Columbus, NC", pos: [35.2532, -82.1971], labelSide: "right" }
   ];
 
   const SERVICE_POLYGON = [
@@ -38,6 +38,10 @@
   const MARKER_STAGGER_MS = prefersReduceMotion ? 140 : 620;
   const FLY_DURATION = prefersReduceMotion ? 0.01 : 2.2;
   const BOUNDS_PAD = 0.045;
+  const POST_ZOOM_STEP = prefersReduceMotion ? 0 : 0.55;
+  const POST_ZOOM_DURATION = prefersReduceMotion ? 0.01 : 0.9;
+  const DOT_ANCHOR_X = 10;
+  const DOT_ANCHOR_Y = 20;
 
   function clearMarkerTimeouts() {
     markerTimeouts.forEach((id) => clearTimeout(id));
@@ -71,19 +75,25 @@
 
     CITIES.forEach((city, index) => {
       const id = window.setTimeout(() => {
-        const inner = document.createElement("div");
-        inner.className = "ae-city-marker";
-        inner.innerHTML = `<span class="ae-city-dot" aria-hidden="true"></span><span class="ae-city-label">${escapeHtml(
-          city.name
-        )}</span>`;
+        const side = city.labelSide === "left" ? "left" : "right";
+        const labelW = Math.min(188, 90 + city.name.length * 5.35);
+        const lineW = 30;
+        const iconH = 44;
+        const iconW = Math.round(labelW + lineW + 24);
 
-        const labelW = Math.min(196, 104 + city.name.length * 5.5);
-        const iconH = 52;
+        const inner = document.createElement("div");
+        inner.className = `ae-city-marker ae-city-marker--${side}`;
+        inner.style.setProperty("--city-label-w", `${labelW}px`);
+        inner.innerHTML =
+          side === "left"
+            ? `<span class="ae-city-label">${escapeHtml(city.name)}</span><span class="ae-city-line" aria-hidden="true"></span><span class="ae-city-dot" aria-hidden="true"></span>`
+            : `<span class="ae-city-dot" aria-hidden="true"></span><span class="ae-city-line" aria-hidden="true"></span><span class="ae-city-label">${escapeHtml(city.name)}</span>`;
+
         const icon = L.divIcon({
           className: "ae-city-marker-outer",
           html: inner,
-          iconSize: [labelW, iconH],
-          iconAnchor: [labelW / 2, iconH / 2]
+          iconSize: [iconW, iconH],
+          iconAnchor: side === "left" ? [iconW - DOT_ANCHOR_X, DOT_ANCHOR_Y] : [DOT_ANCHOR_X, DOT_ANCHOR_Y]
         });
 
         const marker = L.marker(city.pos, { icon }).addTo(mapInstance);
@@ -91,6 +101,17 @@
       }, index * MARKER_STAGGER_MS);
       markerTimeouts.push(id);
     });
+  }
+
+  function addServicePolygon() {
+    if (!mapInstance) return;
+    servicePolygon = L.polygon(SERVICE_POLYGON, {
+      color: "#0d3a0d",
+      weight: 1.25,
+      fillColor: "#4da24d",
+      fillOpacity: 0.16,
+      dashArray: "5 6"
+    }).addTo(mapInstance);
   }
 
   function runIntro() {
@@ -103,27 +124,30 @@
       maxZoom: 19
     }).addTo(mapInstance);
 
-    servicePolygon = L.polygon(SERVICE_POLYGON, {
-      color: "#0d3a0d",
-      weight: 1.25,
-      fillColor: "#2563eb",
-      fillOpacity: 0.24
-    }).addTo(mapInstance);
-
     const afterLayout = () => {
       mapInstance.invalidateSize();
-      const bounds = servicePolygon.getBounds().pad(BOUNDS_PAD);
-
-      flyMoveEndHandler = () => {
-        flyMoveEndHandler = null;
-        addCityMarkersStaggered();
-      };
-      mapInstance.once("moveend", flyMoveEndHandler);
+      const bounds = L.latLngBounds(SERVICE_POLYGON).pad(BOUNDS_PAD);
 
       if (prefersReduceMotion) {
         mapInstance.fitBounds(bounds, { animate: false });
+        addServicePolygon();
+        addCityMarkersStaggered();
         return;
       }
+
+      flyMoveEndHandler = () => {
+        flyMoveEndHandler = null;
+        mapInstance.flyTo(mapInstance.getCenter(), mapInstance.getZoom() + POST_ZOOM_STEP, {
+          duration: POST_ZOOM_DURATION,
+          easeLinearity: 0.22
+        });
+
+        mapInstance.once("moveend", () => {
+          addServicePolygon();
+          addCityMarkersStaggered();
+        });
+      };
+      mapInstance.once("moveend", flyMoveEndHandler);
 
       mapInstance.flyToBounds(bounds, {
         duration: FLY_DURATION,
