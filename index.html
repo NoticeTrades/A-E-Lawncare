@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A&E Lawn Care</title>
+  <meta name="description" content="A&E Lawn Care - reliable lawn care services with easy quotes and local service area coverage.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-top-bar">
+      <div class="container header-top-inner">
+        <span class="header-top-text">Licensed &amp; insured · Serving Upstate SC &amp; nearby NC</span>
+        <a class="header-top-link" href="mailto:quotes@aelawncare.com">quotes@aelawncare.com</a>
+      </div>
+    </div>
+    <div class="container nav-wrap">
+      <a href="#home" class="brand-block" aria-label="A&E Lawn Care home">
+        <img src="assets/logo.png" alt="" class="brand-logo-img" width="120" height="120">
+        <div class="brand-text">
+          <span class="brand-name">A&amp;E Lawn Care</span>
+          <span class="brand-tagline">Lawn, landscape &amp; heavy outdoor projects</span>
+        </div>
+      </a>
+      <nav aria-label="Main navigation" class="main-nav">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a class="btn btn-primary call-now-btn" href="tel:+18646121455">Call Us Now: (864) 612-1455</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero reveal">
+      <div class="container hero-grid">
+        <div>
+          <h1>A&E Lawn Care</h1>
+          <p>
+            From weekly lawn maintenance to large outdoor projects, we deliver clean results, clear communication, and work that lasts.
+          </p>
+          <p><strong>Your property deserves more than basic service. It deserves A&amp;E standards.</strong></p>
+          <div class="hero-actions">
+            <button type="button" class="btn btn-primary btn-quote" id="open-quote-modal">Get Instant Free Quote</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h2>Why A&amp;E Stands Out</h2>
+          <ul>
+            <li>Licensed and insured with a strong record of reliability</li>
+            <li>Fast scheduling, detailed workmanship, and respectful crews</li>
+            <li>Trusted for both routine lawn care and heavy outdoor projects</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <h2>About A&amp;E Lawn Care Services</h2>
+        <p>
+          No project is too big or too small for A&amp;E Lawn Care Services. We are a licensed and insured team known for dependable service, honest communication, and attention to detail. Our work includes landscaping maintenance, lawn maintenance, tree removal, and full property cleanups, along with heavier outdoor improvements such as gravel installation, poolside material placement, and structural landscape features like small bridge installs. We show up prepared, work efficiently, and go above and beyond to build long-term relationships with every customer we serve.
+        </p>
+        <p><strong>Call:</strong> (864) 612-1455<br><strong>Email:</strong> quotes@aelawncare.com</p>
+      </div>
+    </section>
+
+    <section class="section reveal areas-services-section" id="where-we-work">
+      <div class="container">
+        <div class="two-col-cards">
+          <div class="info-card">
+            <h2>Areas we work</h2>
+            <p>Local crews serving neighborhoods and properties across the region.</p>
+            <ul class="pill-list">
+              <li>Spartanburg, SC</li>
+              <li>Tryon, NC</li>
+              <li>Inman, SC</li>
+              <li>Landrum, SC</li>
+              <li>Columbus, NC</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h2>What we do</h2>
+            <p>From weekly upkeep to machine-heavy jobs, we keep your outdoor space on point.</p>
+            <ul class="check-list">
+              <li>Mulch installation</li>
+              <li>Pine needles installation</li>
+              <li>Leaf cleanup</li>
+              <li>Lawn mowing</li>
+              <li>Tree removal</li>
+              <li>Stump removal</li>
+              <li>Shrub trimming</li>
+              <li>Retaining walls</li>
+              <li>Paver installation</li>
+              <li>Grading</li>
+              <li>Building and repairing horse fences</li>
+              <li>Debris removal</li>
+              <li>Mini excavator services</li>
+              <li>Skid steer services</li>
+              <li>Sod installation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="globe-map-block">
+          <div class="globe-map-header">
+            <h3 class="globe-map-title">Explore our territory</h3>
+            <p class="globe-map-desc">
+              Watch the map zoom in to the Upstate SC &amp; Western NC region, then each service town pops in with its name. Pan and zoom anytime.
+            </p>
+          </div>
+          <div class="map-stage-wrap">
+            <div class="map-phase" id="map-phase" aria-live="polite">
+              <div id="service-leaflet-map" class="leaflet-map-host" aria-label="Interactive service area map"></div>
+              <div class="map-phase-toolbar">
+                <button type="button" class="btn btn-soft btn-sm" id="replay-map-intro">Replay zoom &amp; cities</button>
+                <p class="map-tile-note">
+                  Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal showcase-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Project Showcase</h2>
+          <p>Real work from A&amp;E crews across maintenance, planting, and tree removal projects.</p>
+        </div>
+        <div class="showcase-shell">
+          <div class="showcase-track" id="showcase-track">
+            <article class="showcase-card">
+              <img src="assets/showcase-grass.png" alt="Fresh grass and hardscape edge installation">
+              <div class="showcase-caption">Lawn and border finish work</div>
+            </article>
+            <article class="showcase-card">
+              <img src="assets/showcase-planting.png" alt="Crew installing mature plants and shrubs">
+              <div class="showcase-caption">Plant and landscape installs</div>
+            </article>
+            <article class="showcase-card">
+              <img src="assets/showcase-tree-1.png" alt="Large tree removal near a home">
+              <div class="showcase-caption">Large tree removal projects</div>
+            </article>
+            <article class="showcase-card">
+              <img src="assets/showcase-flower.png" alt="Flower bed and trimmed ornamental landscaping">
+              <div class="showcase-caption">Flower beds and curb appeal upgrades</div>
+            </article>
+            <article class="showcase-card">
+              <img src="assets/showcase-tree-2.png" alt="Heavy root and storm cleanup from tree removal">
+              <div class="showcase-caption">Storm damage and root cleanup</div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> A&E Lawn Care. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="modal-overlay hidden" id="quote-modal" aria-hidden="true">
+    <div class="modal-backdrop" id="quote-modal-backdrop" tabindex="-1"></div>
+    <div class="modal-panel modal-panel-quote" role="dialog" aria-modal="true" aria-labelledby="quote-modal-title">
+      <button type="button" class="modal-close" id="quote-modal-close" aria-label="Close quote form">&times;</button>
+      <div class="modal-header-brand">
+        <div class="modal-logo-wrap">
+          <img src="assets/logo.png" alt="" class="modal-logo" width="96" height="96">
+        </div>
+        <h2 id="quote-modal-title">Get your instant free quote</h2>
+        <p class="modal-sub">Fill out the form below and we’ll get back to you with a clear estimate.</p>
+      </div>
+      <form id="quote-form-modal" class="quote-form quote-form-modal">
+        <div class="form-section">
+          <span class="form-section-label">Contact</span>
+          <label for="modal-name">Name <span class="req">*</span></label>
+          <input id="modal-name" name="name" type="text" required autocomplete="name" placeholder="Your full name">
+
+          <label for="modal-email">Email <span class="req">*</span></label>
+          <input id="modal-email" name="email" type="email" required placeholder="you@email.com" autocomplete="email">
+
+          <label for="modal-phone">Phone <span class="req">*</span></label>
+          <input id="modal-phone" name="phone" type="tel" required autocomplete="tel" placeholder="(864) 000-0000">
+        </div>
+
+        <div class="form-section">
+          <span class="form-section-label">Property location</span>
+          <label for="modal-street">Street address <span class="req">*</span></label>
+          <input id="modal-street" name="street_address" type="text" required autocomplete="street-address" placeholder="123 Main Street">
+
+          <div class="form-grid-3 form-grid-3-address">
+            <div>
+              <label for="modal-state">State <span class="req">*</span></label>
+              <select id="modal-state" name="state" required autocomplete="address-level1" data-us-state-select>
+                <option value="">Select state</option>
+              </select>
+            </div>
+            <div>
+              <label for="modal-city">City <span class="req">*</span></label>
+              <input id="modal-city" name="city" type="text" required autocomplete="address-level2" placeholder="City">
+            </div>
+            <div>
+              <label for="modal-zip">ZIP code <span class="req">*</span></label>
+              <input id="modal-zip" name="zip_code" type="text" required inputmode="numeric" autocomplete="postal-code" placeholder="29301" maxlength="10" class="input-zip">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <span class="form-section-label">About you</span>
+          <fieldset class="fieldset-plain">
+            <legend class="legend-inline">Existing customer or new customer? <span class="req">*</span></legend>
+            <div class="radio-row">
+              <label class="radio-label"><input type="radio" name="customer_type" value="New customer" required> New customer</label>
+              <label class="radio-label"><input type="radio" name="customer_type" value="Existing customer"> Existing customer</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="form-section">
+          <span class="form-section-label">Project</span>
+          <label for="modal-service">Service needed <span class="req">*</span></label>
+          <select id="modal-service" name="service" required>
+            <option value="">Select a service</option>
+            <option value="Mulch installation">Mulch installation</option>
+            <option value="Pine needles installation">Pine needles installation</option>
+            <option value="Leaf cleanup">Leaf cleanup</option>
+            <option value="Lawn mowing">Lawn mowing</option>
+            <option value="Tree removal">Tree removal</option>
+            <option value="Stump removal">Stump removal</option>
+            <option value="Shrub trimming">Shrub trimming</option>
+            <option value="Retaining walls">Retaining walls</option>
+            <option value="Paver installation">Paver installation</option>
+            <option value="Grading">Grading</option>
+            <option value="Building and repairing horse fences">Building and repairing horse fences</option>
+            <option value="Debris removal">Debris removal</option>
+            <option value="Mini excavator services">Mini excavator services</option>
+            <option value="Skid steer services">Skid steer services</option>
+            <option value="Sod installation">Sod installation</option>
+            <option value="More (describe in message)">More (describe in message)</option>
+          </select>
+
+          <label for="modal-message">Message / description <span class="req">*</span></label>
+          <textarea id="modal-message" name="message" rows="4" required placeholder="Describe the job, timeline, or any questions…"></textarea>
+        </div>
+
+        <button class="btn btn-primary btn-quote btn-modal-submit" type="submit">Submit quote request</button>
+      </form>
+      <p id="quote-modal-status" class="form-status modal-form-status" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="supabase-client.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="us-states.js"></script>
+  <script src="script.js"></script>
+  <script src="contact.js"></script>
+  <script src="where-we-work.js"></script>
+</body>
+</html>

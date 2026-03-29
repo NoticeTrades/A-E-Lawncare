@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | A&E Lawn Care</title>
+  <meta name="description" content="Admin dashboard for A&E Lawn Care quote requests.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-top-bar">
+      <div class="container header-top-inner">
+        <span class="header-top-text">Admin · A&amp;E Lawn Care</span>
+        <a class="header-top-link" href="index.html">Back to site</a>
+      </div>
+    </div>
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand-block" aria-label="A&E Lawn Care home">
+        <img src="assets/logo.png" alt="" class="brand-logo-img" width="120" height="120">
+        <div class="brand-text">
+          <span class="brand-name">A&amp;E Lawn Care</span>
+          <span class="brand-tagline">Owner dashboard</span>
+        </div>
+      </a>
+      <nav aria-label="Main navigation" class="main-nav">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container dashboard-header">
+        <div>
+          <h1>Admin Dashboard</h1>
+          <p>View incoming quote requests and switch language mode.</p>
+        </div>
+        <div class="dashboard-actions">
+          <button id="lang-en" class="btn btn-primary" type="button">View English</button>
+          <button id="lang-es" class="btn btn-soft" type="button">Ver en Espanol</button>
+          <button id="clear-all" class="btn btn-danger" type="button">Clear All</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div id="admin-auth-card" class="form-card">
+          <h2>Owner Login</h2>
+          <p>Sign in to view quote requests.</p>
+          <form id="admin-login-form" class="quote-form">
+            <label for="admin-email">Email</label>
+            <input id="admin-email" name="email" type="email" required>
+
+            <label for="admin-password">Password</label>
+            <input id="admin-password" name="password" type="password" required>
+
+            <button class="btn btn-primary" type="submit">Sign In</button>
+          </form>
+          <p id="admin-auth-status" class="form-status" aria-live="polite"></p>
+        </div>
+
+        <div id="admin-data" class="admin-data hidden">
+          <div class="dashboard-actions" style="margin-bottom: 1rem;">
+            <button id="logout" class="btn btn-danger" type="button">Log Out</button>
+          </div>
+        <p class="dashboard-note">
+          Translation mode converts dashboard labels to Spanish and opens message text in Google Translate for quick reading.
+        </p>
+        <div id="entries" class="entries-grid"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> A&E Lawn Care. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="supabase-client.js"></script>
+  <script src="script.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

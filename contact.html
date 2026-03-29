@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | A&E Lawn Care</title>
+  <meta name="description" content="Request a free quote from A&E Lawn Care.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-top-bar">
+      <div class="container header-top-inner">
+        <span class="header-top-text">Licensed &amp; insured · Serving Upstate SC &amp; nearby NC</span>
+        <a class="header-top-link" href="mailto:quotes@aelawncare.com">quotes@aelawncare.com</a>
+      </div>
+    </div>
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand-block" aria-label="A&E Lawn Care home">
+        <img src="assets/logo.png" alt="" class="brand-logo-img" width="120" height="120">
+        <div class="brand-text">
+          <span class="brand-name">A&amp;E Lawn Care</span>
+          <span class="brand-tagline">Lawn, landscape &amp; heavy outdoor projects</span>
+        </div>
+      </a>
+      <nav aria-label="Main navigation" class="main-nav">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a class="btn btn-primary call-now-btn" href="tel:+18646121455">Call Us Now: (864) 612-1455</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Request Your Free Quote</h1>
+        <p>Tell us about your project and we will reach out quickly with a clear, honest estimate.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-layout">
+        <aside class="contact-info card">
+          <h2>Contact A&amp;E</h2>
+          <p>Fast response for routine maintenance and heavy outdoor work.</p>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                  <path d="M6.62 10.79a15.47 15.47 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.3 21 3 13.7 3 4a1 1 0 0 1 1-1h3.49a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.2 2.2Z" />
+                </svg>
+              </span>
+              <span><strong>Phone</strong><br><a href="tel:+18646121455">(864) 612-1455</a></span>
+            </li>
+            <li>
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                  <path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v.2L12 13 3 6.2V6Zm0 2.7V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.7l-8.4 6.1a1 1 0 0 1-1.2 0L3 8.7Z" />
+                </svg>
+              </span>
+              <span><strong>Email</strong><br><a href="mailto:quotes@aelawncare.com">quotes@aelawncare.com</a></span>
+            </li>
+          </ul>
+        </aside>
+
+        <div class="form-card">
+          <h2>Contact Form</h2>
+          <form id="quote-form" class="quote-form quote-form-page">
+            <div class="form-section">
+              <span class="form-section-label">Contact</span>
+              <label for="name">Name <span class="req">*</span></label>
+              <input id="name" name="name" type="text" required autocomplete="name" placeholder="Your full name">
+
+              <label for="email">Email <span class="req">*</span></label>
+              <input id="email" name="email" type="email" required placeholder="you@email.com" autocomplete="email">
+
+              <label for="phone">Phone <span class="req">*</span></label>
+              <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="(864) 000-0000">
+            </div>
+
+            <div class="form-section">
+              <span class="form-section-label">Property location</span>
+              <label for="street">Street address <span class="req">*</span></label>
+              <input id="street" name="street_address" type="text" required autocomplete="street-address" placeholder="123 Main Street">
+
+              <div class="form-grid-3 form-grid-3-address">
+                <div>
+                  <label for="state">State <span class="req">*</span></label>
+                  <select id="state" name="state" required autocomplete="address-level1" data-us-state-select>
+                    <option value="">Select state</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="city">City <span class="req">*</span></label>
+                  <input id="city" name="city" type="text" required autocomplete="address-level2" placeholder="City">
+                </div>
+                <div>
+                  <label for="zip_code">ZIP code <span class="req">*</span></label>
+                  <input id="zip_code" name="zip_code" type="text" required inputmode="numeric" autocomplete="postal-code" placeholder="29301" maxlength="10" class="input-zip">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <span class="form-section-label">About you</span>
+              <fieldset class="fieldset-plain">
+                <legend class="legend-inline">Existing customer or new customer? <span class="req">*</span></legend>
+                <div class="radio-row">
+                  <label class="radio-label"><input type="radio" name="customer_type" value="New customer" required> New customer</label>
+                  <label class="radio-label"><input type="radio" name="customer_type" value="Existing customer"> Existing customer</label>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="form-section">
+              <span class="form-section-label">Project</span>
+              <label for="service">Service needed <span class="req">*</span></label>
+              <select id="service" name="service" required>
+                <option value="">Select a service</option>
+                <option value="Mulch installation">Mulch installation</option>
+                <option value="Pine needles installation">Pine needles installation</option>
+                <option value="Leaf cleanup">Leaf cleanup</option>
+                <option value="Lawn mowing">Lawn mowing</option>
+                <option value="Tree removal">Tree removal</option>
+                <option value="Stump removal">Stump removal</option>
+                <option value="Shrub trimming">Shrub trimming</option>
+                <option value="Retaining walls">Retaining walls</option>
+                <option value="Paver installation">Paver installation</option>
+                <option value="Grading">Grading</option>
+                <option value="Building and repairing horse fences">Building and repairing horse fences</option>
+                <option value="Debris removal">Debris removal</option>
+                <option value="Mini excavator services">Mini excavator services</option>
+                <option value="Skid steer services">Skid steer services</option>
+                <option value="Sod installation">Sod installation</option>
+                <option value="More (describe in message)">More (describe in message)</option>
+              </select>
+
+              <label for="message">Message / description <span class="req">*</span></label>
+              <textarea id="message" name="message" rows="6" required placeholder="Describe the job, timeline, or any questions…"></textarea>
+            </div>
+
+            <button class="btn btn-primary btn-quote" type="submit">Submit Quote Request</button>
+          </form>
+          <p id="form-status" class="form-status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> A&E Lawn Care. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="supabase-client.js"></script>
+  <script src="us-states.js"></script>
+  <script src="script.js"></script>
+  <script src="contact.js"></script>
+</body>
+</html>
