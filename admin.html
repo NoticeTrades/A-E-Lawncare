@@ -34,13 +34,13 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container dashboard-header">
-        <div>
+    <section class="admin-hero">
+      <div class="container dashboard-header admin-header-card">
+        <div class="admin-header-copy">
           <h1>Admin Dashboard</h1>
           <p>View incoming quote requests and switch language mode.</p>
         </div>
-        <div class="dashboard-actions">
+        <div class="dashboard-actions admin-header-actions">
           <button id="lang-en" class="btn btn-primary" type="button">View English</button>
           <button id="lang-es" class="btn btn-soft" type="button">Ver en Espanol</button>
           <button id="clear-all" class="btn btn-danger" type="button">Clear All</button>
@@ -48,7 +48,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section admin-main-section">
       <div class="container">
         <div id="admin-auth-card" class="form-card">
           <h2>Owner Login</h2>
@@ -66,13 +66,13 @@
         </div>
 
         <div id="admin-data" class="admin-data hidden">
-          <div class="dashboard-actions" style="margin-bottom: 1rem;">
+          <div class="dashboard-actions admin-top-actions">
             <button id="logout" class="btn btn-danger" type="button">Log Out</button>
           </div>
-        <p class="dashboard-note">
-          Translation mode converts dashboard labels to Spanish and opens message text in Google Translate for quick reading.
-        </p>
-        <div id="entries" class="entries-grid"></div>
+          <p class="dashboard-note admin-note">
+            Translation mode converts dashboard labels to Spanish and opens message text in Google Translate for quick reading.
+          </p>
+          <div id="entries" class="entries-grid"></div>
         </div>
       </div>
     </section>

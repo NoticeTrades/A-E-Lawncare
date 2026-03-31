@@ -1256,6 +1256,48 @@ body.modal-open {
   margin-top: 0;
 }
 
+.admin-hero {
+  background: linear-gradient(180deg, #f3faf3 0%, #ffffff 100%);
+  padding: 1.5rem 0 0.4rem;
+}
+
+.admin-header-card {
+  background: #fff;
+  border: 1px solid #d8e6d8;
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  box-shadow: var(--shadow);
+}
+
+.admin-header-copy h1 {
+  margin-bottom: 0.25rem;
+}
+
+.admin-header-copy p {
+  margin: 0;
+  color: #3a563a;
+}
+
+.admin-header-actions .btn {
+  min-width: 122px;
+}
+
+.admin-main-section {
+  padding-top: 1.25rem;
+}
+
+.admin-top-actions {
+  margin-bottom: 1rem;
+}
+
+.admin-note {
+  background: #f5faf5;
+  border: 1px solid #d9e8d9;
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  color: #395739;
+}
+
 .entries-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
