@@ -6,6 +6,21 @@ if (yearNode) {
 document.documentElement.style.removeProperty("--site-cursor");
 document.documentElement.style.removeProperty("--site-cursor-pointer");
 
+const siteHeader = document.querySelector(".site-header");
+if (siteHeader) {
+  const minOpacity = 0;
+  const fadeDistance = 170;
+  const updateHeaderFade = () => {
+    const y = Math.max(0, window.scrollY || 0);
+    const progress = Math.min(1, y / fadeDistance);
+    const opacity = 1 - (1 - minOpacity) * progress;
+    siteHeader.style.setProperty("--header-fade-opacity", opacity.toFixed(3));
+    siteHeader.style.pointerEvents = opacity <= 0.02 ? "none" : "auto";
+  };
+  updateHeaderFade();
+  window.addEventListener("scroll", updateHeaderFade, { passive: true });
+}
+
 const heroVideo = document.querySelector(".hero-bg-video");
 if (heroVideo) {
   heroVideo.preload = "auto";

@@ -10,17 +10,20 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="home-page">
   <header class="site-header">
     <div class="header-top-bar">
       <div class="container header-top-inner">
         <span class="header-top-text">Licensed &amp; insured · Serving Upstate SC &amp; nearby NC</span>
-        <a class="header-top-link" href="mailto:quotes@aelawncare.com">quotes@aelawncare.com</a>
+        <a class="header-top-link" href="mailto:support@aelawnpros.com">support@aelawnpros.com</a>
       </div>
     </div>
     <div class="container nav-wrap">
       <a href="#home" class="brand-block" aria-label="A&E Lawn Care home">
-        <img src="assets/logo.png" alt="" class="brand-logo-img" width="120" height="120">
+        <span class="brand-logo-anim" aria-hidden="true">
+          <span class="logo-grass-roll"></span>
+          <img src="assets/logo.png" alt="" class="brand-logo-img brand-logo-pop" width="120" height="120">
+        </span>
         <div class="brand-text">
           <span class="brand-name">A&amp;E Lawn Care</span>
           <span class="brand-tagline">Lawn, landscape &amp; heavy outdoor projects</span>
@@ -38,7 +41,7 @@
   </header>
 
   <main>
-    <section id="home" class="hero reveal">
+    <section id="home" class="hero reveal home-hero-center">
       <div class="hero-media" aria-hidden="true">
         <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="assets/showcase-sod-delivery.png">
           <source src="assets/showcase-highlight-reel.mov" type="video/quicktime">
@@ -56,14 +59,6 @@
           <div class="hero-actions">
             <button type="button" class="btn btn-primary btn-quote" id="open-quote-modal">Get Instant Free Quote</button>
           </div>
-        </div>
-        <div class="hero-card">
-          <h2>Why A&amp;E Stands Out</h2>
-          <ul>
-            <li>Licensed and insured with a strong record of reliability</li>
-            <li>Fast scheduling, detailed workmanship, and respectful crews</li>
-            <li>Trusted for both routine lawn care and heavy outdoor projects</li>
-          </ul>
         </div>
       </div>
     </section>
@@ -86,7 +81,7 @@
           <div class="about-contact-strip">
             <a href="tel:+18644739976"><span>Main</span><strong>(864) 473-9976</strong></a>
             <a href="tel:+18646121455"><span>Secondary</span><strong>(864) 612-1455</strong></a>
-            <a href="mailto:quotes@aelawncare.com"><span>Email</span><strong>quotes@aelawncare.com</strong></a>
+            <a href="mailto:support@aelawnpros.com"><span>Email</span><strong>support@aelawnpros.com</strong></a>
           </div>
         </div>
       </div>
