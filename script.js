@@ -16,9 +16,7 @@ if (siteHeader) {
     siteHeader.classList.toggle("is-scrolled", y > 18);
 
     if (isHomePage) {
-      const progress = Math.min(1, y / 220);
-      const opacity = 0.94 + progress * 0.06;
-      siteHeader.style.setProperty("--header-fade-opacity", opacity.toFixed(3));
+      siteHeader.style.setProperty("--header-fade-opacity", "1");
     } else {
       siteHeader.style.setProperty("--header-fade-opacity", "1");
     }

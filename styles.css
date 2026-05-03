@@ -76,7 +76,12 @@ body {
   left: 0;
   right: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.02);
+  background: linear-gradient(
+    180deg,
+    rgba(13, 58, 13, 0.94) 0%,
+    rgba(13, 58, 13, 0.76) 45%,
+    rgba(13, 58, 13, 0.16) 100%
+  );
   border-bottom: none;
   box-shadow: none;
   backdrop-filter: blur(0);
