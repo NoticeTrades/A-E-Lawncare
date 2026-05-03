@@ -33,7 +33,7 @@
       <nav aria-label="Main navigation" class="main-nav">
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
+          <li><a href="#services">Services</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a class="btn btn-primary call-now-btn" href="tel:+18644739976">Call Us Now: (864) 473-9976</a></li>
         </ul>
@@ -90,7 +90,12 @@
 
     <section class="section reveal areas-services-section" id="where-we-work">
       <div class="container">
-        <div class="two-col-cards">
+        <div class="section-head areas-section-head">
+          <h2>Services &amp; Service Area</h2>
+          <p>Reliable lawn care, landscape installs, hardscape work, and machine-heavy property projects across Upstate SC and nearby Western NC.</p>
+        </div>
+
+        <div class="service-area-summary">
           <div class="info-card">
             <h2>Service Areas</h2>
             <p>A&amp;E Lawn Care serves properties across Upstate South Carolina and nearby Western North Carolina with dependable scheduling and consistent service quality.</p>
@@ -103,38 +108,79 @@
             </ul>
             <p class="areas-note">Near these locations? Call to confirm availability for your property.</p>
           </div>
-          <div class="info-card">
-            <h2>What we do</h2>
-            <p>From weekly upkeep to machine-heavy jobs, we keep your outdoor space on point.</p>
-            <ul class="check-list">
-              <li>Lawn mowing and maintenance for commercial and residential properties</li>
-              <li>Mulch installation</li>
-              <li>Pine needles installation</li>
-              <li>Leaf cleanup</li>
-              <li>Lawn mowing</li>
-              <li>Tree removal</li>
-              <li>Stump removal</li>
-              <li>Shrub trimming</li>
-              <li>Retaining walls</li>
-              <li>Paver installation</li>
-              <li>Grading</li>
-              <li>Building and repairing horse fences</li>
-              <li>Debris removal</li>
-              <li>Mini excavator services</li>
-              <li>Skid steer services</li>
-              <li>Sod installation</li>
-            </ul>
+          <div class="service-area-metrics">
+            <div><strong>5</strong><span>Core towns</span></div>
+            <div><strong>15+</strong><span>Outdoor services</span></div>
+            <div><strong>2</strong><span>State region</span></div>
           </div>
         </div>
 
-        <div class="globe-map-block">
+        <div class="home-services-showcase" id="services">
+          <div class="section-head">
+            <h2>What We Do</h2>
+            <p>Each service is built around clean preparation, clear communication, and a finished property that looks intentional.</p>
+          </div>
+
+          <article class="home-service-row reveal reveal-from-right">
+            <div class="home-service-row-media">
+              <img src="assets/showcase-sod-install.png" alt="Fresh sod being installed across a prepared lawn area">
+            </div>
+            <div class="home-service-row-copy">
+              <span class="service-label">Lawn &amp; Landscape Care</span>
+              <h3>Maintenance, mulch, sod, and seasonal cleanups</h3>
+              <p>Keep the property sharp with mowing, mulch installation, pine needles, leaf cleanup, sod installation, shrub trimming, and planting support.</p>
+            </div>
+          </article>
+
+          <article class="home-service-row home-service-row-reverse reveal reveal-from-left">
+            <div class="home-service-row-media">
+              <img src="assets/showcase-walkway-stone.png" alt="Curved stone walkway with dark gravel joints">
+            </div>
+            <div class="home-service-row-copy">
+              <span class="service-label">Hardscapes &amp; Outdoor Builds</span>
+              <h3>Walkways, pavers, retaining walls, and timber work</h3>
+              <p>Improve access and curb appeal with paver installation, retaining walls, raised beds, timber features, and horse fence building or repair.</p>
+            </div>
+          </article>
+
+          <article class="home-service-row reveal reveal-from-right">
+            <div class="home-service-row-media">
+              <img src="assets/showcase-drainage-pipe.png" alt="Drainage pipe staged for a runoff control project">
+            </div>
+            <div class="home-service-row-copy">
+              <span class="service-label">Drainage &amp; Grading</span>
+              <h3>Runoff control, grading, and erosion support</h3>
+              <p>Handle water problems and uneven ground with drainage planning, pipe placement, grading, and slope-focused property improvements.</p>
+            </div>
+          </article>
+
+          <article class="home-service-row home-service-row-reverse reveal reveal-from-left">
+            <div class="home-service-row-media">
+              <img src="assets/showcase-raised-bed.png" alt="Large raised garden bed built with pressure treated lumber">
+            </div>
+            <div class="home-service-row-copy">
+              <span class="service-label">Heavy Property Work</span>
+              <h3>Tree removal, debris cleanup, and machine services</h3>
+              <p>For bigger jobs, A&amp;E handles tree and stump removal, debris removal, mini excavator services, and skid steer services.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="globe-map-block reveal">
           <div class="globe-map-header">
             <h3 class="globe-map-title">Explore our territory</h3>
             <p class="globe-map-desc">
-              Watch the map zoom in to the Upstate SC &amp; Western NC region, then each service town pops in with its name. Pan and zoom anytime.
+              Use the city buttons or the map to explore the core A&amp;E Lawn Care service area.
             </p>
           </div>
           <div class="map-stage-wrap">
+            <div class="map-city-panel" aria-label="Service area towns">
+              <button type="button" class="map-city-card" data-city="Spartanburg, SC"><strong>Spartanburg</strong><span>SC</span></button>
+              <button type="button" class="map-city-card" data-city="Tryon, NC"><strong>Tryon</strong><span>NC</span></button>
+              <button type="button" class="map-city-card" data-city="Inman, SC"><strong>Inman</strong><span>SC</span></button>
+              <button type="button" class="map-city-card" data-city="Landrum, SC"><strong>Landrum</strong><span>SC</span></button>
+              <button type="button" class="map-city-card" data-city="Columbus, NC"><strong>Columbus</strong><span>NC</span></button>
+            </div>
             <div class="map-phase" id="map-phase" aria-live="polite">
               <div id="service-leaflet-map" class="leaflet-map-host" aria-label="Interactive service area map"></div>
               <div class="map-phase-toolbar">
@@ -204,16 +250,16 @@
             <article class="showcase-card-clean">
               <img src="assets/showcase-raised-bed.png" alt="Large raised garden bed built with pressure treated lumber">
               <div class="showcase-copy">
-                <h3>Drainage material setup</h3>
-                <p>Heavy-duty pipe transport and installation support for runoff and erosion management projects.</p>
+                <h3>Raised bed carpentry</h3>
+                <p>Clean, square framing for elevated planting beds that improve drainage and planting control.</p>
               </div>
             </article>
 
             <article class="showcase-card-clean">
               <img src="assets/showcase-drainage-pipe.png" alt="Large black drainage pipe on trailer ready for property installation">
               <div class="showcase-copy">
-                <h3>Raised bed carpentry</h3>
-                <p>Clean, square framing for elevated planting beds that improve drainage and planting control.</p>
+                <h3>Drainage material setup</h3>
+                <p>Heavy-duty pipe transport and installation support for runoff and erosion management projects.</p>
               </div>
             </article>
 

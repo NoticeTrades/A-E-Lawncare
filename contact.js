@@ -32,7 +32,7 @@ function bindQuoteForm(form, formStatus) {
         let msg = `Submit failed: ${error.message}`;
         if (/column|schema|does not exist/i.test(error.message)) {
           msg +=
-            " If you just added new form fields, run the migration SQL in SUPABASE_SETUP.md (section “Add quote form columns”).";
+            " If you recently changed form fields, make sure the Supabase 'quotes' table columns are up to date.";
         }
         formStatus.textContent = msg;
       }

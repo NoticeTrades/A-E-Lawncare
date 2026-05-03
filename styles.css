@@ -3,6 +3,7 @@
   --green-800: #145214;
   --green-700: #1c6d1c;
   --green-200: #dff1df;
+  --ink: #142214;
   --white: #ffffff;
   --shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
 }
@@ -13,6 +14,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 132px;
 }
 
 html,
@@ -37,8 +39,10 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
-  color: #111;
+  color: var(--ink);
   background: var(--white);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 .home-page {
@@ -72,10 +76,20 @@ body {
   left: 0;
   right: 0;
   width: 100%;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.02);
   border-bottom: none;
   box-shadow: none;
-  backdrop-filter: none;
+  backdrop-filter: blur(0);
+}
+
+.site-header.is-scrolled {
+  box-shadow: 0 8px 26px rgba(13, 58, 13, 0.13);
+}
+
+.home-page .site-header.is-scrolled {
+  background: rgba(244, 250, 244, 0.92);
+  border-bottom: 1px solid rgba(199, 220, 199, 0.72);
+  backdrop-filter: blur(12px);
 }
 
 .header-top-bar {
@@ -87,6 +101,10 @@ body {
 .home-page .header-top-bar {
   background: rgba(10, 39, 10, 0.62);
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.home-page .site-header.is-scrolled .header-top-bar {
+  background: rgba(13, 58, 13, 0.92);
 }
 
 .header-top-inner {
@@ -495,7 +513,9 @@ h2 {
 }
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   text-decoration: none;
   padding: 0.7rem 1rem;
@@ -740,8 +760,9 @@ h2 {
 
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translateY(14px);
+  transition: opacity 0.48s ease, transform 0.48s ease;
+  will-change: opacity, transform;
 }
 
 .reveal.visible {
@@ -1130,6 +1151,82 @@ body.modal-open {
   background: linear-gradient(180deg, #f3faf3 0%, #ffffff 100%);
 }
 
+.areas-services-section.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.areas-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(280px, 0.55fr);
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.1rem;
+}
+
+.areas-section-head h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.75rem, 3vw, 2.3rem);
+}
+
+.areas-section-head p {
+  color: #335033;
+  margin: 0;
+}
+
+.service-area-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.42fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.service-area-summary .info-card {
+  border-radius: 16px;
+  border: 1px solid #cfe2cf;
+  box-shadow: 0 16px 34px rgba(13, 58, 13, 0.12);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f4fbf4 0%, #ffffff 100%);
+}
+
+.service-area-summary .info-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1c6d1c 0%, #2b8a2b 55%, #7abf62 100%);
+}
+
+.service-area-metrics {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.service-area-metrics div {
+  display: grid;
+  align-content: center;
+  min-height: 100px;
+  padding: 1rem;
+  border-radius: 14px;
+  border: 1px solid #cfe2cf;
+  background: #fff;
+  box-shadow: 0 14px 28px rgba(13, 58, 13, 0.1);
+}
+
+.service-area-metrics strong {
+  color: var(--green-900);
+  font-size: clamp(1.75rem, 4vw, 2.45rem);
+  line-height: 1;
+}
+
+.service-area-metrics span {
+  color: #3a573a;
+  font-weight: 800;
+}
+
 .two-col-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1174,7 +1271,7 @@ body.modal-open {
 }
 
 .globe-map-block {
-  margin-top: 0.25rem;
+  margin-top: 2.4rem;
 }
 
 .globe-map-header {
@@ -1197,12 +1294,54 @@ body.modal-open {
 
 .map-stage-wrap {
   position: relative;
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
   border-radius: 18px;
   border: 1px solid #b9d3b9;
   background: linear-gradient(180deg, #edf6ed 0%, #f9fdf9 100%);
   box-shadow: 0 18px 44px rgba(13, 58, 13, 0.14);
   overflow: hidden;
   min-height: 420px;
+}
+
+.map-city-panel {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  padding: 1rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f3faf3 100%);
+  border-right: 1px solid #d0e4d0;
+}
+
+.map-city-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  border: 1px solid #d4e5d4;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--green-900);
+  font: inherit;
+  text-align: left;
+  padding: 0.72rem 0.8rem;
+  box-shadow: 0 7px 16px rgba(13, 58, 13, 0.08);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.map-city-card span {
+  color: #527052;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.map-city-card:hover,
+.map-city-card:focus-visible,
+.map-city-card.active {
+  transform: translateY(-2px);
+  border-color: #6faf6f;
+  background: #eff8ef;
+  box-shadow: 0 10px 20px rgba(13, 58, 13, 0.13);
 }
 
 .map-phase {
@@ -1276,7 +1415,7 @@ body.modal-open {
 }
 
 .leaflet-map-host {
-  height: min(480px, 62vh);
+  height: min(540px, 64vh);
   min-height: 320px;
   width: 100%;
   z-index: 1;
@@ -1310,6 +1449,25 @@ body.modal-open {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal,
+  .reveal.reveal-from-left,
+  .reveal.reveal-from-right {
+    opacity: 1;
+    transform: none;
+  }
+
   .ae-city-marker {
     animation: none;
     transform: scale(1);
@@ -1406,6 +1564,143 @@ body.modal-open {
 
 .check-list li {
   margin-bottom: 0.35rem;
+}
+
+.home-services-showcase {
+  display: grid;
+  gap: 1.1rem;
+  margin: 2rem 0 0;
+}
+
+.home-services-showcase > .section-head {
+  max-width: 720px;
+}
+
+.home-service-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.72fr);
+  gap: 0;
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid #cfe2cf;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(13, 58, 13, 0.12);
+}
+
+.home-service-row-reverse {
+  grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1.08fr);
+}
+
+.home-service-row .home-service-row-media {
+  order: 2;
+}
+
+.home-service-row .home-service-row-copy {
+  order: 1;
+}
+
+.home-service-row-reverse .home-service-row-media {
+  order: 1;
+}
+
+.home-service-row-reverse .home-service-row-copy {
+  order: 2;
+}
+
+.home-service-row-media {
+  min-height: clamp(320px, 42vw, 460px);
+  background: #102610;
+}
+
+.home-service-row-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 0.7s ease;
+}
+
+.home-service-row.visible .home-service-row-media img {
+  transform: scale(1);
+}
+
+.home-service-row-copy {
+  display: grid;
+  align-content: center;
+  padding: clamp(1.2rem, 4vw, 2.35rem);
+}
+
+.service-label {
+  width: fit-content;
+  margin-bottom: 0.75rem;
+  border-radius: 999px;
+  background: #e8f5e8;
+  color: var(--green-800);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.68rem;
+}
+
+.home-service-row-copy h3 {
+  margin: 0 0 0.65rem;
+  color: var(--green-900);
+  font-size: clamp(1.45rem, 3vw, 2.15rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.home-service-row-copy p {
+  margin: 0;
+  color: #2f4f2f;
+  font-size: clamp(1rem, 1.6vw, 1.08rem);
+  line-height: 1.6;
+}
+
+.home-service-grid {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.home-service-card {
+  display: grid;
+  grid-template-columns: 138px minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid #d6e5d6;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(13, 58, 13, 0.08);
+}
+
+.home-service-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 128px;
+  object-fit: cover;
+  display: block;
+}
+
+.home-service-card div {
+  padding: 0.82rem 0.85rem 0.82rem 0;
+}
+
+.home-service-card h3 {
+  margin: 0 0 0.28rem;
+  color: var(--green-900);
+  font-size: 1rem;
+}
+
+.home-service-card p {
+  margin: 0;
+  color: #355235;
+  font-size: 0.92rem;
+  line-height: 1.42;
 }
 
 .services-hero {
@@ -1555,6 +1850,10 @@ body.modal-open {
 }
 
 @media (max-width: 900px) {
+  html {
+    scroll-padding-top: 180px;
+  }
+
   .header-top-inner {
     justify-content: center;
     text-align: center;
@@ -1580,6 +1879,28 @@ body.modal-open {
 
   .two-col-cards {
     grid-template-columns: 1fr;
+  }
+
+  .areas-section-head,
+  .service-area-summary,
+  .map-stage-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .service-area-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .map-city-panel {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-right: none;
+    border-bottom: 1px solid #d0e4d0;
+  }
+
+  .map-city-card {
+    display: grid;
+    justify-items: center;
+    text-align: center;
   }
 
   .hero-grid {
@@ -1632,9 +1953,18 @@ body.modal-open {
     grid-template-columns: 1fr;
   }
 
+  .home-service-card {
+    grid-template-columns: 118px minmax(0, 1fr);
+  }
+
   .service-story.reverse .service-photo,
   .service-story.reverse .service-copy {
     order: initial;
+  }
+
+  .service-photo img {
+    min-height: 245px;
+    max-height: 330px;
   }
 
   .contact-layout {
@@ -1663,11 +1993,53 @@ body.modal-open {
 }
 
 @media (max-width: 620px) {
+  html {
+    scroll-padding-top: 210px;
+  }
+
   .showcase-grid-clean {
     grid-template-columns: 1fr;
   }
 
   .showcase-video {
     max-height: 300px;
+  }
+
+  .areas-section-head {
+    display: block;
+  }
+
+  .service-area-metrics,
+  .map-city-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .home-service-row-media {
+    min-height: 260px;
+  }
+
+  .home-service-row,
+  .home-service-row-reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .home-service-row-reverse .home-service-row-media,
+  .home-service-row-reverse .home-service-row-copy,
+  .home-service-row .home-service-row-media,
+  .home-service-row .home-service-row-copy {
+    order: initial;
+  }
+
+  .home-service-card {
+    grid-template-columns: 1fr;
+  }
+
+  .home-service-card img {
+    min-height: 180px;
+    max-height: 230px;
+  }
+
+  .home-service-card div {
+    padding: 0.88rem;
   }
 }

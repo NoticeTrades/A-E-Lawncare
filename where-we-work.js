@@ -2,6 +2,7 @@
   const section = document.getElementById("where-we-work");
   const mapEl = document.getElementById("service-leaflet-map");
   const btnReplay = document.getElementById("replay-map-intro");
+  const cityButtons = Array.from(document.querySelectorAll("[data-city]"));
 
   if (!section || !mapEl || typeof L === "undefined") {
     return;
@@ -31,6 +32,7 @@
   let mapInstance = null;
   let servicePolygon = null;
   let cityMarkers = [];
+  let markerByCity = new Map();
   let markerTimeouts = [];
   let introStarted = false;
   let flyMoveEndHandler = null;
@@ -55,6 +57,7 @@
       flyMoveEndHandler = null;
     }
     cityMarkers = [];
+    markerByCity = new Map();
     servicePolygon = null;
     if (mapInstance) {
       mapInstance.remove();
@@ -72,6 +75,7 @@
   function addCityMarkersStaggered() {
     clearMarkerTimeouts();
     cityMarkers = [];
+    markerByCity = new Map();
 
     CITIES.forEach((city, index) => {
       const id = window.setTimeout(() => {
@@ -96,11 +100,50 @@
           iconAnchor: side === "left" ? [iconW - DOT_ANCHOR_X, DOT_ANCHOR_Y] : [DOT_ANCHOR_X, DOT_ANCHOR_Y]
         });
 
-        const marker = L.marker(city.pos, { icon }).addTo(mapInstance);
+        const marker = L.marker(city.pos, { icon })
+          .addTo(mapInstance)
+          .bindPopup(`<strong>${escapeHtml(city.name)}</strong><br>A&amp;E service area`);
+        marker.on("click", () => setActiveCity(city.name));
         cityMarkers.push(marker);
+        markerByCity.set(city.name, marker);
+
+        if (index === 0) {
+          setActiveCity(city.name);
+        }
       }, index * MARKER_STAGGER_MS);
       markerTimeouts.push(id);
     });
+  }
+
+  function setActiveCity(cityName) {
+    cityButtons.forEach((button) => {
+      button.classList.toggle("active", button.dataset.city === cityName);
+    });
+  }
+
+  function focusCity(cityName) {
+    const city = CITIES.find((item) => item.name === cityName);
+    if (!city) return;
+
+    introStarted = true;
+    if (!mapInstance) {
+      runIntro();
+    }
+
+    setActiveCity(cityName);
+
+    window.setTimeout(() => {
+      if (!mapInstance) return;
+      mapInstance.flyTo(city.pos, 11, {
+        duration: prefersReduceMotion ? 0.01 : 0.75,
+        easeLinearity: 0.2
+      });
+
+      const marker = markerByCity.get(cityName);
+      if (marker) {
+        marker.openPopup();
+      }
+    }, mapInstance && markerByCity.size ? 0 : 520);
   }
 
   function addServicePolygon() {
@@ -161,6 +204,10 @@
   btnReplay?.addEventListener("click", () => {
     introStarted = true;
     runIntro();
+  });
+
+  cityButtons.forEach((button) => {
+    button.addEventListener("click", () => focusCity(button.dataset.city));
   });
 
   const observer = new IntersectionObserver(

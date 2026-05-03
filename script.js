@@ -8,18 +8,48 @@ document.documentElement.style.removeProperty("--site-cursor-pointer");
 
 const siteHeader = document.querySelector(".site-header");
 if (siteHeader) {
-  const minOpacity = 0;
-  const fadeDistance = 170;
-  const updateHeaderFade = () => {
+  const isHomePage = document.body.classList.contains("home-page");
+  let ticking = false;
+
+  const updateHeaderState = () => {
     const y = Math.max(0, window.scrollY || 0);
-    const progress = Math.min(1, y / fadeDistance);
-    const opacity = 1 - (1 - minOpacity) * progress;
-    siteHeader.style.setProperty("--header-fade-opacity", opacity.toFixed(3));
-    siteHeader.style.pointerEvents = opacity <= 0.02 ? "none" : "auto";
+    siteHeader.classList.toggle("is-scrolled", y > 18);
+
+    if (isHomePage) {
+      const progress = Math.min(1, y / 220);
+      const opacity = 0.94 + progress * 0.06;
+      siteHeader.style.setProperty("--header-fade-opacity", opacity.toFixed(3));
+    } else {
+      siteHeader.style.setProperty("--header-fade-opacity", "1");
+    }
+
+    ticking = false;
   };
-  updateHeaderFade();
-  window.addEventListener("scroll", updateHeaderFade, { passive: true });
+
+  const requestHeaderUpdate = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeaderState);
+      ticking = true;
+    }
+  };
+
+  updateHeaderState();
+  window.addEventListener("scroll", requestHeaderUpdate, { passive: true });
 }
+
+const smoothScrollLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
+smoothScrollLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const target = document.querySelector(link.getAttribute("href"));
+    if (!target) return;
+
+    event.preventDefault();
+    const headerHeight = siteHeader?.offsetHeight || 0;
+    const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+    target.closest(".reveal")?.classList.add("visible");
+    window.scrollTo({ top: Math.max(0, targetTop), behavior: "smooth" });
+  });
+});
 
 const heroVideo = document.querySelector(".hero-bg-video");
 if (heroVideo) {
