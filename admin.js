@@ -165,6 +165,11 @@ function setViewSignedIn(isSignedIn) {
   dataWrap.classList.toggle("hidden", !isSignedIn);
 }
 
+function isLikelyNetworkFetchError(message) {
+  const m = String(message || "").toLowerCase();
+  return m.includes("failed to fetch") || m.includes("networkerror") || m.includes("load failed");
+}
+
 async function loadQuotes() {
   const supabase = getSupabaseClient();
   if (!supabase) {
@@ -315,7 +320,11 @@ document.getElementById("admin-login-form")?.addEventListener("submit", async (e
 
   const { error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) {
-    setAuthMessage(`Login failed: ${error.message}`);
+    if (isLikelyNetworkFetchError(error.message)) {
+      setAuthMessage("Login failed: unable to reach Supabase. Check AE_SUPABASE_URL / AE_SUPABASE_ANON_KEY in supabase-config.js.");
+    } else {
+      setAuthMessage(`Login failed: ${error.message}`);
+    }
     return;
   }
 

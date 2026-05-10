@@ -37,7 +37,7 @@
   let introStarted = false;
   let flyMoveEndHandler = null;
 
-  const MARKER_STAGGER_MS = prefersReduceMotion ? 140 : 620;
+  const MARKER_STAGGER_MS = 0;
   const FLY_DURATION = prefersReduceMotion ? 0.01 : 2.2;
   const BOUNDS_PAD = 0.045;
   const POST_ZOOM_STEP = prefersReduceMotion ? 0 : 0.55;
@@ -170,32 +170,9 @@
     const afterLayout = () => {
       mapInstance.invalidateSize();
       const bounds = L.latLngBounds(SERVICE_POLYGON).pad(BOUNDS_PAD);
-
-      if (prefersReduceMotion) {
-        mapInstance.fitBounds(bounds, { animate: false });
-        addServicePolygon();
-        addCityMarkersStaggered();
-        return;
-      }
-
-      flyMoveEndHandler = () => {
-        flyMoveEndHandler = null;
-        mapInstance.flyTo(mapInstance.getCenter(), mapInstance.getZoom() + POST_ZOOM_STEP, {
-          duration: POST_ZOOM_DURATION,
-          easeLinearity: 0.22
-        });
-
-        mapInstance.once("moveend", () => {
-          addServicePolygon();
-          addCityMarkersStaggered();
-        });
-      };
-      mapInstance.once("moveend", flyMoveEndHandler);
-
-      mapInstance.flyToBounds(bounds, {
-        duration: FLY_DURATION,
-        easeLinearity: 0.22
-      });
+      mapInstance.fitBounds(bounds, { animate: false });
+      addServicePolygon();
+      addCityMarkersStaggered();
     };
 
     window.requestAnimationFrame(afterLayout);
@@ -210,17 +187,10 @@
     button.addEventListener("click", () => focusCity(button.dataset.city));
   });
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting || introStarted) return;
-        introStarted = true;
-        observer.disconnect();
-        window.requestAnimationFrame(runIntro);
-      });
-    },
-    { threshold: 0.2 }
-  );
-
-  observer.observe(section);
+  // Initialize immediately so the map always renders,
+  // even when IntersectionObserver timing is inconsistent.
+  if (!introStarted) {
+    introStarted = true;
+    window.requestAnimationFrame(runIntro);
+  }
 })();
