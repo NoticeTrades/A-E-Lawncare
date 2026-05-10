@@ -76,11 +76,13 @@ body {
   left: 0;
   right: 0;
   width: 100%;
+  isolation: isolate;
   background: transparent;
   border-bottom: none;
   box-shadow: none;
   backdrop-filter: blur(0);
 }
+
 
 .site-header.is-scrolled {
   box-shadow: 0 8px 26px rgba(13, 58, 13, 0.13);
@@ -99,12 +101,12 @@ body {
 }
 
 .home-page .header-top-bar {
-  background: linear-gradient(90deg, #0c380c 0%, #155015 50%, #1c631c 100%);
+  background: rgba(10, 39, 10, 0.62);
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .home-page .site-header.is-scrolled .header-top-bar {
-  background: linear-gradient(90deg, #0c380c 0%, #155015 50%, #1c631c 100%);
+  background: rgba(13, 58, 13, 0.92);
 }
 
 .header-top-inner {
@@ -150,6 +152,7 @@ body {
 .home-page .nav-wrap {
   overflow: hidden;
   isolation: isolate;
+  margin-bottom: 0;
 }
 
 .home-page .nav-wrap::before {
@@ -395,7 +398,7 @@ body {
 
 .hero-grid {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   gap: 1.4rem;
@@ -461,27 +464,11 @@ body {
   display: block;
 }
 
-.home-page .hero-bg-video {
-  object-position: center 58%;
-}
-
 .hero-media-overlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(6, 29, 8, 0.8) 0%,
-      rgba(8, 33, 10, 0.66) 22%,
-      rgba(10, 34, 10, 0.48) 46%,
-      rgba(10, 27, 10, 0.3) 100%
-    ),
-    linear-gradient(
-      115deg,
-      rgba(10, 27, 10, 0.42) 0%,
-      rgba(14, 42, 14, 0.3) 58%,
-      rgba(18, 54, 18, 0.18) 100%
-    );
+  z-index: 0;
+  background: linear-gradient(115deg, rgba(10, 27, 10, 0.8) 0%, rgba(14, 42, 14, 0.68) 46%, rgba(24, 58, 24, 0.28) 100%);
 }
 
 .hero h1,
